@@ -1,11 +1,19 @@
 <template>
-  <div>
-    <h1>보고싶은 영화</h1>
-    <input 
-      type="text" 
-      v-model="movieTitle"
-      @keyup.enter="createMovieTitle"
-    >
+  <div class="container">
+    <h3>보고싶은 영화</h3>
+    <br>
+    <b-input-group>
+      <b-form-input
+        type="text" 
+        v-model="movieTitle"
+        @keyup.enter="createMovieTitle"
+      >
+      </b-form-input>
+      <b-input-group-append>
+        <b-button variant="outline-success" @click="createMovieTitle">button</b-button>
+      </b-input-group-append>
+    </b-input-group>
+
   </div>
 </template>
 
