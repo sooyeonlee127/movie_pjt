@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button type="submit" @click="PickRandomMovie" >PICK</button>
-    <div v-if="PickedMovie">
-      <!-- <img src="{{ movie.img.url }}" alt="">
-      <div>{{ movie.title }}</div> -->
-      
+    <button @click="PickMovie">PICK</button>
+    <div v-if="clicked">
+      <img :src="`https://image.tmdb.org/t/p/original/${ RandomMovie[pickedmovie].backdrop_path }`" alt="">
+      <div>
+        {{RandomMovie[pickedmovie].title}}
+      </div>
     </div>
-    {{ movieList }}
   </div>
 </template>
 
@@ -15,23 +15,24 @@ export default {
     name: 'RandomView',
     created() {
       this.$store.dispatch('requestMovies')
-      this.PickedMovie()
-
+    },
+    data() {
+      return {
+        clicked : false,
+        pickedmovie : 0,
+      }
     },
     methods: {
-      PickRandomMovie() {
-        this.$store.state.dispatch('PickedMovie', this.movie)
+      PickMovie() {
+        this.clicked = true
+        this.pickedmovie = Math.floor(Math.random()*20)
       }
     },
     computed: {
-      PickedMovie() {
-        return this.$store.state.PickedMovie
-      },
-      movieList() {
+      RandomMovie() {
         return this.$store.state.movies
       }
     }
-    
 }
 </script>
 
