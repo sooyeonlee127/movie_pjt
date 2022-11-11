@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <b-card-group class="justify-content-md-center">
     <MovieCard
      v-for="(movie, index) in movieList" 
      :key=index
      :movie="movie"
     />
-  </div>
+  </b-card-group>
 </template>
 
 <script>
