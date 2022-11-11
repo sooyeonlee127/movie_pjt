@@ -20,7 +20,7 @@ export default new Vuex.Store({
   actions: {
       requestMovies({commit}) {
         const API_URL = 'https://api.themoviedb.org/3/movie/top_rated'
-        const API_KEY = '599a8101209112f2e04263af254f075e'
+        const API_KEY = '비밀ㅎㅎ'
         console.log(API_URL)
         axios.get(API_URL, {
           params: {
