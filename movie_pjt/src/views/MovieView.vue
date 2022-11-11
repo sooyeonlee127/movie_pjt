@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    {{ movieList }}
   </div>
 </template>
 
@@ -8,7 +8,12 @@
 export default {
     name: 'MovieView',
     created() {
-        console.log(this.$store.state.TopRatedMovies)
+      this.$store.dispatch('requestMovies')
+    },
+    computed: {
+      movieList() {
+        return this.$store.state.movies
+      }
     }
 }
 </script>

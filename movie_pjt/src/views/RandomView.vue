@@ -4,7 +4,9 @@
     <div v-if="PickedMovie">
       <!-- <img src="{{ movie.img.url }}" alt="">
       <div>{{ movie.title }}</div> -->
+      
     </div>
+    {{ movieList }}
   </div>
 </template>
 
@@ -12,7 +14,9 @@
 export default {
     name: 'RandomView',
     created() {
+      this.$store.dispatch('requestMovies')
       this.PickedMovie()
+
     },
     methods: {
       PickRandomMovie() {
@@ -22,8 +26,12 @@ export default {
     computed: {
       PickedMovie() {
         return this.$store.state.PickedMovie
+      },
+      movieList() {
+        return this.$store.state.movies
       }
     }
+    
 }
 </script>
 
