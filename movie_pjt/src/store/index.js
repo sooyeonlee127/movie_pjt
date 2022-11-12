@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import axios from 'axios'
 
 
@@ -18,20 +17,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
-      requestMovies({commit}) {
+      requestMovies(context) {
         const API_URL = 'https://api.themoviedb.org/3/movie/top_rated'
-        const API_KEY = '비밀ㅎㅎ'
-        console.log(API_URL)
+        const API_KEY = 'secret'
+
         axios.get(API_URL, {
           params: {
               api_key: API_KEY,
               language: 'ko',
               region: 'KR',
-            }
+          }
         }).then((response) => {
           const movies = response.data.results
-          commit('TOP_RATED_MOVIES', movies)
-          console.log(movies)
+          context.commit('TOP_RATED_MOVIES', movies)
+
         }).catch((error) => {
             console.error(error)
         })

@@ -1,10 +1,10 @@
 <template>
-    <div class="container">
-      <button @click="PickMovie" class="btn btn-primary btn-lg w-100">PICK</button>
-      <div v-if="clicked" class="card">
-        <img :src="`https://image.tmdb.org/t/p/original/${ RandomMovie[pickedmovie].backdrop_path }`" alt="">
+    <div class="container" style="max-width:700px !important;">
+      <button @click="PickMovie" class="btn btn-primary btn-lg w-100" id="PickBtn">Pick!</button>
+      <div v-if="randomMovieId>-1" class="card">
+        <img :src="`https://image.tmdb.org/t/p/original/${ MovieList[randomMovieId].backdrop_path }`" alt="">
         <div class="nav-title py-3 px-1 fw-bold">
-          {{RandomMovie[pickedmovie].title}}
+          {{ MovieList[randomMovieId].title }}
         </div>
       </div>
     </div>
@@ -13,25 +13,31 @@
 <script>
 export default {
     name: 'RandomView',
-    created() {
-      this.$store.dispatch('requestMovies')
-    },
     data() {
       return {
-        clicked : false,
-        pickedmovie : 0,
+        randomMovieId : -1,
       }
     },
     methods: {
       PickMovie() {
-        this.clicked = true
-        this.pickedmovie = Math.floor(Math.random()*20)
+        let tmp = 0
+        do { // 이전과 같은 randomMovieId가 나온 경우 다시 선택
+          tmp = Math.floor(Math.random() * this.MovieList.length) 
+        } 
+        while (tmp == this.randomMovieId) 
+        this.randomMovieId = tmp
+
+        const PickBtn = document.querySelector('#PickBtn')
+        PickBtn.innerText = "Pick Again!"
       }
     },
     computed: {
-      RandomMovie() {
+      MovieList() {
         return this.$store.state.movies
       }
+    },
+    created() {
+      this.$store.dispatch('requestMovies')
     }
 }
 </script>

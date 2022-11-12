@@ -1,11 +1,13 @@
 <template>
-  <b-card-group class="justify-content-md-center">
-    <MovieCard
-     v-for="(movie, index) in movieList" 
-     :key=index
-     :movie="movie"
-    />
-  </b-card-group>
+  <div class="container" style="max-width: 1200px !important;">
+    <b-card-group class="justify-content-md-center">
+      <MovieCard
+      v-for="(movie, index) in movieList" 
+      :key="`movieList-${index}`"
+      :movie="movie"
+      />
+    </b-card-group>
+  </div>
 </template>
 
 <script>
@@ -16,7 +18,7 @@ export default {
       MovieCard,
     },
     created() {
-      this.$store.dispatch('requestMovies')
+      this.$store.dispatch('requestMovies') // index.js에서 requestMovies(actions) 호출
     },
     computed: {
       movieList() {
