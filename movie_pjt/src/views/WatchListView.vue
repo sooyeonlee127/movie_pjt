@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="container" style="max-width:700px !important;">
     <WatchListForm @create-movie-title="createMovieTitle"/>
-    <ul v-for="(watch, index) in watchList" :key="index">
+    <div class="list-group">
+    <a class="list-group-item list-group-item-action m-0" v-for="(watch, index) in watchList" :key="`watchList-${index}`">
       <WatchListItem :watch="watch" @delete-movie-title="deleteMovieTitle"/>
-    </ul>
+    </a>
+    </div>
   </div>
 </template>
 

@@ -1,7 +1,6 @@
 <template>
-  <div @click="deleteMovieTitle">
+  <div @click="deleteMovieTitle" style="cursor: pointer;">
     {{ watch.title }}
-
   </div>
 </template>
 

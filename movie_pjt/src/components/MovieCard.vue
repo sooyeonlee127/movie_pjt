@@ -4,13 +4,12 @@
       <b-card class="m-3" 
         :img-src="`https://image.tmdb.org/t/p/original/${ movie.poster_path }`" 
         img-alt="Image" 
-        img-top style="max-width: 250px;"
-        >
+        img-top style="max-width: 250px;">
         <b-card-text class="text-xl-center">
           {{ movie.original_title }}
         </b-card-text>
         <br>
-        <b-card-text class="text-sm-center">
+        <b-card-text class="text-sm-center" style="max-height:300px; overflow:initial;">
           {{ movie.overview }}
         </b-card-text>
       </b-card>
